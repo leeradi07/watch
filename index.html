@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⏱️ 신나는 시계 공부 - 대화형 시간 학습 프로그램</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern and friendly typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Outfit:wght@400;600;800&family=Noto+Sans+KR:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background dynamic glow shapes -->
+    <div class="glow-bg">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="app-container">
+        
+        <!-- ==================== 1. 설정 화면 (Setup Screen) ==================== -->
+        <section id="setup-screen" class="glass-card active">
+            <header class="setup-header">
+                <div class="logo-icon">⏰</div>
+                <h1>신나는 시계 공부</h1>
+                <p>시계를 직접 돌리며 우리의 하루 일과와 시간을 함께 배워봐요!</p>
+            </header>
+
+            <div class="setup-options">
+                <div class="option-group">
+                    <label class="option-label">
+                        <span class="option-title">초 바늘(초침) 표시</span>
+                        <span class="option-desc">시계에 초를 표시할지 선택합니다.</span>
+                    </label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="toggle-seconds" checked>
+                        <label for="toggle-seconds" class="switch-slider"></label>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label class="option-label">
+                        <span class="option-title">시작 시간 설정</span>
+                        <span class="option-desc">학습을 시작할 시각을 지정합니다.</span>
+                    </label>
+                    <div class="time-selectors">
+                        <select id="start-ampm" class="custom-select">
+                            <option value="AM" selected>오전</option>
+                            <option value="PM">오후</option>
+                        </select>
+                        <select id="start-hour" class="custom-select">
+                            <option value="9" selected>9시</option>
+                            <option value="12">12시 (정오/자정)</option>
+                            <option value="1">1시</option>
+                            <option value="2">2시</option>
+                            <option value="3">3시</option>
+                            <option value="4">4시</option>
+                            <option value="5">5시</option>
+                            <option value="6">6시</option>
+                            <option value="7">7시</option>
+                            <option value="8">8시</option>
+                            <option value="10">10시</option>
+                            <option value="11">11시</option>
+                        </select>
+                        <select id="start-minute" class="custom-select">
+                            <option value="0" selected>00분</option>
+                            <option value="10">10분</option>
+                            <option value="20">20분</option>
+                            <option value="30">30분</option>
+                            <option value="40">40분</option>
+                            <option value="50">50분</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-start" class="btn btn-primary btn-glow">
+                <span>공부 시작하기 🚀</span>
+            </button>
+        </section>
+
+        <!-- ==================== 2. 학습 화면 (Study Screen) ==================== -->
+        <section id="study-screen" class="glass-card">
+            
+            <!-- 상단 바 -->
+            <header class="study-header">
+                <button id="btn-back" class="btn-icon" title="설정으로 돌아가기">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <span>설정</span>
+                </button>
+                <div class="study-title">🕰️ 시계 놀이 학습</div>
+                <button id="btn-reset" class="btn-icon" title="처음 시간으로 리셋">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+                    <span>리셋</span>
+                </button>
+            </header>
+
+            <div class="study-body">
+                <!-- 2.1 왼쪽 영역: 아날로그 시계 -->
+                <div class="clock-panel">
+                    <div class="clock-outer">
+                        <div class="clock-face" id="clock-face">
+                            <!-- 1~12 시간 숫자 (JS로 동적 생성 예정) -->
+                            <div class="clock-numbers" id="clock-numbers"></div>
+                            
+                            <!-- 분 눈금 (JS로 동적 생성 예정) -->
+                            <div class="clock-ticks" id="clock-ticks"></div>
+                            
+                            <!-- 시계 바늘들 -->
+                            <div class="hand hour-hand" id="hour-hand" data-hand="hour">
+                                <div class="hand-cap-label">시침</div>
+                            </div>
+                            <div class="hand minute-hand" id="minute-hand" data-hand="minute">
+                                <div class="hand-cap-label">분침</div>
+                            </div>
+                            <div class="hand second-hand" id="second-hand" data-hand="second"></div>
+                            
+                            <!-- 시계 중심 핀 -->
+                            <div class="center-pin"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="clock-controls-info">
+                        <p class="guide-text">💡 시계의 <strong>시침(빨간색)</strong> 또는 <strong>분침(파란색)</strong>을 마우스나 터치로 돌려보세요!</p>
+                        <div class="helper-toggles">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="show-minute-guides">
+                                <span class="checkmark"></span>
+                                분 가이드(0~59분) 표시하기
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.2 오른쪽 영역: 하루 루틴 카드 및 디지털 퀴즈 -->
+                <div class="routine-panel">
+                    
+                    <!-- 루틴 배경 카드 -->
+                    <div class="routine-card" id="routine-card">
+                        <div class="routine-overlay"></div>
+                        <div class="routine-content">
+                            <div class="routine-illustration" id="routine-illustration">
+                                <!-- JS에서 SVG 또는 CSS 일러스트 동적 삽입 -->
+                                <div class="illustration-placeholder">🎒</div>
+                            </div>
+                            <h2 class="routine-title" id="routine-title">학교 수업</h2>
+                            <p class="routine-desc" id="routine-desc">재미있는 공부를 시작해 볼까요? 친구들과 선생님을 만나요.</p>
+                        </div>
+                    </div>
+
+                    <!-- 디지털 시계 퀴즈 섹션 -->
+                    <div class="quiz-card">
+                        <div class="quiz-header">
+                            <h3>지금은 몇 시 몇 분일까요?</h3>
+                        </div>
+                        
+                        <div class="quiz-display-container">
+                            <!-- 가려진 화면 -->
+                            <div class="quiz-overlay active" id="quiz-overlay">
+                                <button id="btn-reveal" class="btn btn-reveal btn-glow">
+                                    <span>정답 확인하기 🔍</span>
+                                </button>
+                                <p class="quiz-hint-text">아날로그 시계를 보고 맞춘 후 정답을 확인하세요.</p>
+                            </div>
+
+                            <!-- 실제 정답 시각 (디지털) -->
+                            <div class="quiz-answer" id="quiz-answer">
+                                <div class="digital-clock" id="digital-clock">
+                                    <span class="digital-ampm" id="dig-ampm">오전</span>
+                                    <span class="digital-time" id="dig-time">09:00</span>
+                                    <span class="digital-sec-container" id="dig-sec-container">
+                                        <span class="digital-colon">:</span>
+                                        <span class="digital-sec" id="dig-sec">00</span>초
+                                    </span>
+                                </div>
+                                <button id="btn-hide-answer" class="btn btn-secondary btn-sm">
+                                    <span>다시 가리기 🙈</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 실시간 표시 옵션 -->
+                        <div class="quiz-settings">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="always-show-digital">
+                                <span class="checkmark"></span>
+                                실시간으로 바로 정답 보기 (연습 모드)
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 재미있는 시계 나라. 대화형 초등 수학 시간 학습 도구</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
