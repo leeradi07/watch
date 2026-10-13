@@ -28,6 +28,8 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+cv2.setNumThreads(1)  # fork 된 작업 프로세스에서 OpenCV 스레드풀 교착 방지
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 W = int(os.environ.get("BUSAN_W", 1920))
 H = W * 9 // 16
