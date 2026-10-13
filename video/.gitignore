@@ -2,3 +2,4 @@ fonts/
 *.video.mp4
 *.audio.wav
 still_*.png
+__pycache__/
