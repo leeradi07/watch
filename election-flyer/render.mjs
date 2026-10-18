@@ -10,6 +10,7 @@ const pages = [
   ["team.html", "team"],       // 회장단 6인
   ["chalkboard.html", "chalkboard"], // C: 칠판 시간표
   ["icon.html", "icon"],       // D: 아이콘 포스터
+  ["keynote.html", "keynote"], // E: 실리콘밸리 키노트
   ["turnout.html", "turnout"], // 투표 참여 안내
 ];
 
