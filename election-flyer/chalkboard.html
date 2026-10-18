@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배동윤의 시간표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gaegu:wght@400;700&display=block" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: "Pretendard Variable";
+    src: url("fonts/PretendardVariable.woff2") format("woff2-variations");
+    font-weight: 45 920;
+    font-display: block;
+  }
+  :root {
+    --board: #1f4636;
+    --board-dark: #173528;
+    --chalk: #f4f1e8;
+    --chalk-yellow: #ffe066;
+    --chalk-pink: #ff9db0;
+    --chalk-sky: #9ad7ff;
+    --wood: #8a5a34;
+    --wood-dark: #5e3b20;
+    --display: "Black Han Sans", "Pretendard Variable", sans-serif;
+    --hand: "Gaegu", "Pretendard Variable", cursive;
+    --body: "Pretendard Variable", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --stage: #e5e5e5;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --stage: #111; } }
+  :root[data-theme="dark"] { --stage: #111; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--stage); }
+  body { min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; overflow-x: hidden; font-family: var(--body); -webkit-font-smoothing: antialiased; }
+  .fit { width: 794px; height: 1123px; transform-origin: top left; }
+  .fit-wrap { width: 794px; height: 1123px; }
+
+  .sheet {
+    position: relative; width: 794px; height: 1123px; overflow: hidden;
+    background: var(--board); color: var(--chalk);
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  .art { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .defs { position: absolute; width: 0; height: 0; } /* shared/flyer.js injects this */
+  .chalk { filter: url(#chalk); }
+
+  /* ---------- headline ---------- */
+  .head { position: absolute; left: 52px; top: 50px; width: 380px; }
+  .date { font-family: var(--hand); font-weight: 700; font-size: 24px; letter-spacing: -0.03em; color: rgba(244,241,232,.82); }
+  .role { margin-top: 26px; font-family: var(--hand); font-weight: 700; font-size: 36px; letter-spacing: -0.03em; color: var(--chalk-yellow); }
+  h1 { margin-top: -4px; margin-left: -4px; font-family: var(--display); font-weight: 400; font-size: 132px; line-height: 1; letter-spacing: -0.03em; color: var(--chalk); }
+  .slogan { margin-top: 30px; font-family: var(--hand); font-weight: 700; font-size: 40px; line-height: 1.2; letter-spacing: -0.04em; color: var(--chalk); }
+  .slogan .y { color: var(--chalk-yellow); }
+
+  /* ---------- timetable ---------- */
+  .tt { position: absolute; left: 50px; right: 50px; top: 606px; }
+  .tt-title { display: flex; align-items: baseline; gap: 14px; }
+  .tt-title h2 { font-family: var(--display); font-weight: 400; font-size: 36px; color: var(--chalk-yellow); letter-spacing: -0.01em; }
+  .tt-title span { font-family: var(--hand); font-weight: 700; font-size: 22px; letter-spacing: -0.03em; color: rgba(244,241,232,.75); }
+  .grid { margin-top: 12px; display: grid; grid-template-columns: 92px 196px 1fr; grid-template-rows: 40px repeat(4, 88px); }
+  .grid > div { padding: 0 14px; display: flex; flex-direction: column; justify-content: center; }
+  .grid .hd { padding: 0 14px; font-family: var(--hand); font-weight: 700; font-size: 21px; letter-spacing: -0.03em; color: rgba(244,241,232,.7); }
+  .period { font-family: var(--hand); font-weight: 700; font-size: 28px; white-space: nowrap; letter-spacing: -0.04em; color: var(--chalk-yellow); line-height: 1; text-align: center; align-items: center; }
+  .period small { display: block; margin-top: 2px; font-size: 17px; color: rgba(244,241,232,.65); }
+    .subj h3 { font-family: var(--display); font-weight: 400; font-size: 24px; line-height: 1.15; letter-spacing: -0.02em; color: var(--chalk); }
+  .desc { font-size: 15px; line-height: 1.5; font-weight: 500; color: rgba(244,241,232,.9); word-break: keep-all; }
+  .desc b { font-weight: 800; color: var(--chalk-yellow); }
+
+  /* ---------- ledge ---------- */
+  .ledge-txt { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-family: var(--hand); font-weight: 700; font-size: 18px; color: #f6e6cf; letter-spacing: .02em; }
+
+  /* ---------- motion: chalk writing ---------- */
+  .anim .draw { stroke-dasharray: var(--len, 1200); stroke-dashoffset: var(--len, 1200); animation: draw 900ms cubic-bezier(.6,.1,.3,1) forwards; }
+  .anim .d1 { animation-delay: 700ms; } .anim .d2 { animation-delay: 1100ms; } .anim .d3 { animation-delay: 1500ms; } .anim .d4 { animation-delay: 1700ms; }
+  .anim .person { animation: rise 900ms cubic-bezier(.15,.9,.25,1) 100ms both; }
+  .anim .head > * { animation: write 700ms steps(14) both; }
+  .anim .head > :nth-child(2) { animation-delay: 150ms; } .anim .head > :nth-child(3) { animation-delay: 300ms; } .anim .head > :nth-child(4) { animation-delay: 550ms; }
+  .anim .tt { animation: fade 700ms ease 900ms both; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+  @keyframes write { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .anim * { animation: none !important; stroke-dashoffset: 0 !important; } }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: #fff; }
+    body { display: block; padding: 0; min-height: 0; }
+    .fit, .fit-wrap { width: auto; height: auto; transform: none !important; }
+    .anim * { animation: none !important; }
+    .draw { stroke-dashoffset: 0 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="fit-wrap" id="fitWrap">
+<div class="fit" id="fit">
+<!-- 시안 C: 칠판 시간표 -->
+<article class="sheet anim" id="sheet">
+
+  <svg class="art" viewBox="0 0 794 1123" aria-hidden="true">
+    <defs>
+      <!-- chalk: speckled, dry-brush coverage -->
+      <filter id="chalk" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3.2 0 0 0 2.55" result="m"/>
+        <feComposite in="SourceGraphic" in2="m" operator="in"/>
+      </filter>
+      <!-- hand-drawn line: wobble + chalk -->
+      <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="w"/>
+        <feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3 0 0 0 2.5" result="m"/>
+        <feComposite in="d" in2="m" operator="in"/>
+      </filter>
+      <!-- board surface: dust + eraser smears -->
+      <filter id="dust"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="2"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 -.22"/></filter>
+      <filter id="smear"><feGaussianBlur stdDeviation="18"/></filter>
+      <!-- white chalk outline around the candidate -->
+      <filter id="outline" x="-5%" y="-5%" width="110%" height="110%">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="7" result="d"/>
+        <feFlood flood-color="#f4f1e8"/><feComposite in2="d" operator="in" result="o"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -3 0 0 0 2.6" result="m"/>
+        <feComposite in="o" in2="m" operator="in" result="oc"/>
+        <feMerge><feMergeNode in="oc"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="woodG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#9a6a40"/><stop offset=".55" stop-color="#8a5a34"/><stop offset="1" stop-color="#5e3b20"/>
+      </linearGradient>
+    </defs>
+
+    <!-- board -->
+    <rect width="794" height="1123" fill="#1f4636"/>
+    <g filter="url(#smear)" fill="#fff" opacity=".05">
+      <ellipse cx="200" cy="560" rx="220" ry="40" transform="rotate(-6 200 560)"/>
+      <ellipse cx="620" cy="170" rx="160" ry="34" transform="rotate(4 620 170)"/>
+      <ellipse cx="420" cy="980" rx="260" ry="30"/>
+    </g>
+    <rect width="794" height="1123" filter="url(#dust)" opacity=".5"/>
+    <!-- faint ghost of yesterday's lesson -->
+    <g font-family="Gaegu" font-weight="700" font-size="30" fill="#fff" opacity=".05">
+      <text x="470" y="560">가나다라마바사</text>
+    </g>
+
+    <!-- candidate, with a chalk outline -->
+    <g class="person">
+      <image href="assets/candidate.webp" x="372" y="78" width="460" height="523" filter="url(#outline)"/>
+    </g>
+
+    <!-- chalk doodles -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)">
+      <!-- double underline under the name -->
+      <path class="draw d1" style="--len:420" d="M 52 300 C 150 290, 280 296, 404 286" stroke="#ffe066" stroke-width="7"/>
+      <path class="draw d1" style="--len:380" d="M 70 316 C 170 309, 280 312, 380 304" stroke="#ffe066" stroke-width="4"/>
+      <!-- circle around 즉시 출동 -->
+      <path class="draw d2" style="--len:700" d="M 180 360 C 250 340, 348 348, 352 376 C 356 404, 278 412, 206 406 C 148 402, 134 374, 164 362" stroke="#ff9db0" stroke-width="4.5"/>
+      <!-- arrow down to the timetable -->
+      <path class="draw d3" style="--len:300" d="M 300 420 C 336 470, 336 540, 304 590" stroke="#f4f1e8" stroke-width="4"/>
+      <path class="draw d3" style="--len:80" d="M 284 568 L 300 592 L 322 574" stroke="#f4f1e8" stroke-width="4"/>
+      <!-- ballot box doodle -->
+      <path class="draw d4" style="--len:420" d="M 70 498 L 196 498 L 196 572 L 70 572 Z" stroke="#f4f1e8" stroke-width="3.5"/>
+      <path class="draw d4" style="--len:120" d="M 108 498 L 158 498" stroke="#1f4636" stroke-width="6"/>
+      <path class="draw d4" style="--len:220" d="M 112 506 L 116 450 L 160 454 L 156 506" stroke="#f4f1e8" stroke-width="3"/>
+      <path class="draw d4" style="--len:80" d="M 124 474 l 9 10 l 16 -20" stroke="#ff9db0" stroke-width="4"/>
+      <path class="draw d4" style="--len:60" d="M 92 530 H 174" stroke="#f4f1e8" stroke-width="2.5"/>
+      <!-- stars & sparkle -->
+      <path class="draw d4" style="--len:200" d="M 724 70 l 8 22 l 22 2 l -18 14 l 8 22 l -20 -14 l -20 14 l 8 -22 l -18 -14 l 22 -2 z" stroke="#ffe066" stroke-width="3"/>
+      <path class="draw d4" style="--len:120" d="M 330 150 v 30 M 315 165 h 30" stroke="#9ad7ff" stroke-width="3.5"/>
+    </g>
+
+    <!-- timetable grid -->
+    <g fill="none" stroke="#f4f1e8" stroke-linecap="round" filter="url(#rough)" opacity=".85">
+      <path class="draw d2" style="--len:720" d="M 50 702 H 744" stroke-width="3"/>
+      <path class="draw d2" style="--len:720" d="M 50 790 H 744" stroke-width="2"/>
+      <path class="draw d2" style="--len:720" d="M 50 878 H 744" stroke-width="2"/>
+      <path class="draw d3" style="--len:720" d="M 50 966 H 744" stroke-width="2"/>
+      <path class="draw d3" style="--len:720" d="M 50 1052 H 744" stroke-width="3"/>
+      <path class="draw d3" style="--len:420" d="M 142 662 V 1052" stroke-width="2"/>
+      <path class="draw d3" style="--len:420" d="M 338 662 V 1052" stroke-width="2"/>
+    </g>
+
+    <!-- wooden ledge with chalk + eraser -->
+    <rect x="0" y="1068" width="794" height="55" fill="url(#woodG)"/>
+    <rect x="0" y="1066" width="794" height="5" fill="#b07a4b"/>
+    <g>
+      <rect x="560" y="1056" width="96" height="16" rx="3" fill="#2b2b2b"/>
+      <rect x="560" y="1048" width="96" height="10" rx="3" fill="#c9a77c"/>
+      <rect x="92" y="1060" width="58" height="9" rx="4.5" fill="#f4f1e8"/>
+      <rect x="160" y="1061" width="44" height="8" rx="4" fill="#ffe066"/>
+      <rect x="690" y="1061" width="38" height="8" rx="4" fill="#ff9db0" transform="rotate(-8 709 1065)"/>
+    </g>
+  </svg>
+
+  <header class="head">
+    <p class="date chalk">부산교총 회장선거</p>
+    <p class="role chalk">회장 후보</p>
+    <h1 class="chalk">배동윤</h1>
+    <p class="slogan chalk">막힌 교섭은 풀고,<br>현안엔 <span class="y">즉시 출동!</span></p>
+  </header>
+
+  <section class="tt">
+    <div class="tt-title chalk"><h2>배동윤의 시간표</h2><span>4대 약속, 매일 이렇게 지킵니다</span></div>
+    <div class="grid chalk">
+      <div class="hd">교시</div><div class="hd">과목</div><div class="hd">이렇게 바꿉니다</div>
+
+      <div class="period">1교시<small>전문성</small></div>
+      <div class="subj"><h3>교섭의 마스터키</h3></div>
+      <div class="desc">교사·연구사·관리자·정책가의 경험으로<br><b>막힌 교섭 해결!</b></div>
+
+      <div class="period">2교시<small>신속성</small></div>
+      <div class="subj"><h3>교권·현안 119</h3></div>
+      <div class="desc">교권 침해·3시 하교제·보결 문제,<br><b>골든타임 내 즉각 출동!</b></div>
+
+      <div class="period">3교시<small>투명성</small></div>
+      <div class="subj"><h3>클린 메신저</h3></div>
+      <div class="desc">회비 내역부터 공론화 안건까지 회원에게<br><b>투명하게 다이렉트 전달!</b></div>
+
+      <div class="period">4교시<small>맞춤형</small></div>
+      <div class="subj"><h3>교육가족 주치의</h3></div>
+      <div class="desc">단체보험 확대부터 저경력 유입·고경력 우대까지<br><b>1:1 맞춤 케어!</b></div>
+    </div>
+  </section>
+
+  <p class="ledge-txt">부산교총 회장선거 · 회장 후보 배동윤</p>
+</article>
+</div>
+</div>
+<script src="shared/flyer.js"></script>
+</body>
+</html>

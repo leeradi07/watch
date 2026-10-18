@@ -8,6 +8,8 @@ const dir = path.dirname(fileURLToPath(import.meta.url));
 const pages = [
   ["index.html", "flyer"],     // 배동윤 회장 단독
   ["team.html", "team"],       // 회장단 6인
+  ["chalkboard.html", "chalkboard"], // C: 칠판 시간표
+  ["icon.html", "icon"],       // D: 아이콘 포스터
   ["turnout.html", "turnout"], // 투표 참여 안내
 ];
 

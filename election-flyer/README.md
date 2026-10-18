@@ -6,6 +6,8 @@ Toss DESIGN.md([rohitg00/awesome-claude-design · toss.md](https://github.com/ro
 | --- | --- | --- |
 | **A. 회장 단독** — 배동윤 후보 + 4대 약속 | `index.html` | `flyer.png` / `flyer.pdf` |
 | **B. 회장단 6인** — 회장 + 부회장 후보 5인 + 4대 약속 | `team.html` | `team.png` / `team.pdf` |
+| **C. 칠판 시간표** — 교실 칠판 위 분필 글씨, 4대 약속을 1~4교시 시간표로 | `chalkboard.html` | `chalkboard.png` / `chalkboard.pdf` |
+| **D. 아이콘 포스터** — 검정 × 볼트 옐로, 하프톤 인물, 경고 테이프, 회전 배지 | `icon.html` | `icon.png` / `icon.pdf` |
 | (참고) 비당파 투표 참여 안내 | `turnout.html` | `turnout.png` / `turnout.pdf` |
 
 - PNG는 3배 해상도(2382×3369, 약 288dpi), PDF는 A4 인쇄용입니다.
@@ -14,6 +16,9 @@ Toss DESIGN.md([rohitg00/awesome-claude-design · toss.md](https://github.com/ro
 - `render.mjs` — 모든 시안 PNG/PDF 재생성 (`node election-flyer/render.mjs`, Playwright 필요)
 - `assets/candidate.webp` — 회장 후보 사진 누끼 (로컬 rembg `birefnet-portrait`로 배경 제거)
 - `fonts/` — Pretendard Variable (SIL OFL 1.1, `OFL.txt`)
+- C·D안은 Google Fonts(Black Han Sans, Gaegu, OFL)를 온라인으로 불러옵니다. 렌더할 때 인터넷 연결이 필요합니다.
+- `assets/candidate-halftone.png` — D안용 단색 하프톤 인물(망점 45°, 외곽선 포함). SVG 필터로 색을 입힙니다.
+- `concepts-cd.jpg` — C·D안 나란히 비교 이미지
 
 ## 초등학교 배경
 
