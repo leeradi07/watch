@@ -17,7 +17,14 @@ Toss DESIGN.md([rohitg00/awesome-claude-design · toss.md](https://github.com/ro
 
 ## 초등학교 배경
 
-`shared/flyer.js`의 `#school`에 벡터로 그린 장면입니다: 시계탑 중앙 현관이 있는 4층 교사동, 창문 그리드(일부 불 켜진 창), 국기게양대, 나무, 트랙과 축구 골대가 있는 운동장, 뒤편 산·도시 실루엣.
+**사진 (기본):** Adobe Stock #359123862 "Elementary School in Seoul, South Korea" (무료 등급, Adobe 커넥터로 라이선스).
+하늘을 분리해 투명하게 만들고 건물·나무는 Toss Blue 단색 램프(`#061848 → #1e40af → #1b64da → #3182f6 → #8bbcfb → #e8f3ff`)로 매핑해, 빛살과 충격파가 하늘 자리로 비쳐 보이게 했습니다.
+
+- 파일 위치: `assets/stock/school-duotone.webp`
+- **이 폴더는 git에서 제외됩니다** (`assets/stock/.gitignore`). 저장소가 공개라서, Stock 라이선스상 원본·가공본을 남이 내려받을 수 있게 올리지 않습니다. 완성된 PNG/PDF에 들어간 사진은 라이선스 범위 안입니다.
+- 다른 PC에서 다시 렌더하려면 같은 Adobe 계정으로 해당 Stock 사진을 다시 내려받아 같은 듀오톤 처리를 하거나, Claude에게 다시 요청하세요. 파일이 없으면 아래 벡터 학교 일러스트로 자동 대체됩니다.
+
+**벡터 (대체용):** `shared/flyer.js`의 `#school`에 벡터로 그린 장면입니다: 시계탑 중앙 현관이 있는 4층 교사동, 창문 그리드(일부 불 켜진 창), 국기게양대, 나무, 트랙과 축구 골대가 있는 운동장, 뒤편 산·도시 실루엣.
 히어로의 사선 경계와 같은 각도로 `skewY(-8)` 기울여 원근감과 속도감을 줍니다. 모든 색은 Toss Blue 계열 단색입니다.
 
 ## 시안 B — 부회장 사진 넣기

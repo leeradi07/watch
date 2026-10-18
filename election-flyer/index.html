@@ -27,11 +27,12 @@
         <circle class="ring r3" cx="562" cy="250" r="350" stroke-width="1.5" stroke-opacity=".1"/>
       </g>
 
-      <g class="cloud"><use href="#cloud" transform="translate(22 416) scale(.8)" opacity=".95"/></g>
       <g class="cloud"><use href="#cloud" transform="translate(704 236) scale(.7)" opacity=".9"/></g>
 
       <!-- elementary school, tilted to follow the hero edge -->
-      <g class="scene"><use href="#school" transform="translate(-260 384) skewY(-8)"/></g>
+      <!-- school: licensed Adobe Stock photo (Toss Blue duotone, transparent sky); vector scene is the fallback -->
+      <g class="scene scene-vector"><use href="#school" transform="translate(-260 384) skewY(-8)"/></g>
+      <g class="scene scene-photo"><image data-photo href="assets/stock/school-duotone.webp" x="-80" y="150" width="1000" height="665"/></g>
 
       <g class="person">
         <image href="assets/candidate.webp" x="284" y="72" width="520" height="592" filter="url(#echo)"/>

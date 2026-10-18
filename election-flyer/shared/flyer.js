@@ -156,8 +156,16 @@
   }
   if (!matchMedia("print").matches) { resize(); addEventListener("resize", resize); }
 
+  // ---- Use the stock school photo when it is present, else keep the vector scene ----
+  const sheet = document.getElementById("sheet");
+  document.querySelectorAll("image[data-photo]").forEach((img) => {
+    const probe = new Image();
+    probe.onload = () => sheet.classList.add("has-photo");
+    probe.src = img.getAttribute("href");
+  });
+
   // ---- ?static disables motion (used by the PNG/PDF renderer) ----
   if (new URLSearchParams(location.search).has("static")) {
-    document.getElementById("sheet").classList.remove("anim");
+    sheet.classList.remove("anim");
   }
 })();

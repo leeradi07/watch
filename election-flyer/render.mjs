@@ -20,6 +20,7 @@ for (const [file, out] of pages) {
   await page.goto(pathToFileURL(path.join(dir, file)).href + "?static");
   await page.evaluate(() => document.fonts.ready);
   await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(300); // let the optional school photo swap in
 
   await page.locator("#sheet").screenshot({ path: path.join(dir, `${out}.png`) });
 

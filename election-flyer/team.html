@@ -60,10 +60,11 @@
         <circle class="ring r3" cx="565" cy="200" r="336" stroke-width="1.5" stroke-opacity=".1"/>
       </g>
 
-      <g class="cloud"><use href="#cloud" transform="translate(22 392) scale(.8)" opacity=".95"/></g>
       <g class="cloud"><use href="#cloud" transform="translate(708 206) scale(.66)" opacity=".9"/></g>
 
-      <g class="scene"><use href="#school" transform="translate(-260 356) skewY(-8)"/></g>
+      <!-- school: licensed Adobe Stock photo (Toss Blue duotone, transparent sky); vector scene is the fallback -->
+      <g class="scene scene-vector"><use href="#school" transform="translate(-260 356) skewY(-8)"/></g>
+      <g class="scene scene-photo"><image data-photo href="assets/stock/school-duotone.webp" x="-80" y="122" width="1000" height="665"/></g>
 
       <g class="person">
         <image href="assets/candidate.webp" x="330" y="46" width="450" height="512" filter="url(#echo)"/>

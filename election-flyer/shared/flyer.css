@@ -57,6 +57,9 @@ body {
 }
 
 .art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.scene-photo { display: none; }
+.has-photo .scene-photo { display: inline; }
+.has-photo .scene-vector { display: none; }
 .defs { position: absolute; width: 0; height: 0; }
 
 /* ---------- Hero copy ---------- */
