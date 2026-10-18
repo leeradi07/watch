@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배동윤 회장단</title>
+<link rel="stylesheet" href="shared/flyer.css">
+<style>
+  /* Vice-president cards climb the hero edge step by step */
+  .team {
+    position: absolute;
+    left: 56px; right: 56px; top: 532px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .member {
+    transform: translateY(calc(var(--i) * -13px));
+    padding: 16px 10px 14px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(25, 31, 40, 0.12);
+    text-align: center;
+  }
+  .avatar {
+    position: relative;
+    width: 76px; height: 76px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--accent-soft);
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+  .avatar.ph svg { position: absolute; left: 12px; bottom: -6px; width: 52px; height: 52px; color: #90c2ff; }
+  .member .r { margin-top: 10px; font-size: 13px; font-weight: 500; color: var(--text-muted); }
+  .member .n { margin-top: 1px; font-size: 19px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+  .member .n.ph { color: var(--text-dim); }
+
+  .anim .member { animation: rise 600ms cubic-bezier(.2, .9, .3, 1) both; animation-delay: calc(480ms + var(--i) * 60ms); }
+</style>
+</head>
+<body>
+<div class="fit-wrap" id="fitWrap">
+<div class="fit" id="fit">
+<!-- 시안 B: 회장 + 부회장 5인 -->
+<article class="sheet anim" id="sheet" style="--burst: 565px 200px">
+
+  <svg class="art" viewBox="0 0 794 1123" aria-hidden="true">
+    <defs>
+      <clipPath id="hero"><polygon points="0,0 794,0 794,520 0,640"/></clipPath>
+    </defs>
+
+    <g clip-path="url(#hero)">
+      <rect width="794" height="700" fill="#3182f6"/>
+      <g class="rays" data-burst="565,200"></g>
+
+      <g fill="none" stroke="#fff">
+        <circle class="ring r1" cx="565" cy="200" r="180" stroke-width="3" stroke-opacity=".3"/>
+        <circle class="ring r2" cx="565" cy="200" r="250" stroke-width="2" stroke-opacity=".18"/>
+        <circle class="ring r3" cx="565" cy="200" r="336" stroke-width="1.5" stroke-opacity=".1"/>
+      </g>
+
+      <g class="cloud"><use href="#cloud" transform="translate(708 206) scale(.66)" opacity=".9"/></g>
+
+      <!-- school: licensed Adobe Stock photo (Toss Blue duotone, transparent sky); vector scene is the fallback -->
+      <g class="scene scene-vector"><use href="#school" transform="translate(-260 356) skewY(-8)"/></g>
+      <g class="scene scene-photo"><image data-photo href="assets/stock/school-duotone.webp" x="-80" y="122" width="1000" height="665"/></g>
+
+      <g class="person">
+        <image href="assets/candidate.webp" x="330" y="46" width="450" height="512" filter="url(#echo)"/>
+      </g>
+
+      <g class="fly f1" style="--fx:-160px; --fy:140px; --fr:-30deg">
+        <g stroke="#fff" stroke-linecap="round">
+          <line x1="684" y1="132" x2="650" y2="158" stroke-width="5" stroke-opacity=".4"/>
+          <line x1="700" y1="156" x2="676" y2="174" stroke-width="2.5" stroke-opacity=".3"/>
+        </g>
+        <g transform="translate(730 100) rotate(14) scale(.9)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-key" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+      <g class="fly f2" style="--fx:300px; --fy:-200px; --fr:30deg">
+        <g stroke="#fff" stroke-linecap="round">
+          <line x1="342" y1="410" x2="374" y2="386" stroke-width="5" stroke-opacity=".4"/>
+        </g>
+        <g transform="translate(310 438) rotate(-16) scale(.85)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-siren" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+      <g class="fly f3" style="--fx:-180px; --fy:-150px; --fr:-24deg">
+        <g stroke="#fff" stroke-linecap="round">
+          <line x1="724" y1="326" x2="690" y2="300" stroke-width="4" stroke-opacity=".36"/>
+        </g>
+        <g transform="translate(752 356) rotate(-11) scale(.72)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-mail" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+      <g class="fly f4" style="--fx:140px; --fy:160px; --fr:24deg">
+        <g transform="translate(436 76) rotate(-9) scale(.56)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-steth" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+    </g>
+
+    <line x1="-10" y1="641.5" x2="804" y2="518.5" stroke="#3182f6" stroke-width="6"/>
+  </svg>
+
+  <header class="hero-copy">
+    <span class="chip"><i></i>부산교총 회장선거</span>
+    <p class="role">회장 후보</p>
+    <h1>배동윤</h1>
+    <p class="lede">부회장 후보 5인과 한 팀으로<br><b>4대 약속</b>을 지킵니다.</p>
+  </header>
+
+  <!--
+    부회장 후보 5인. 사진이 준비되면 각 .avatar를
+      <div class="avatar"><img src="assets/vp1.webp" alt=""></div>
+    로, 이름(placeholder)을 실제 이름으로 바꾸세요. (.ph 클래스 제거)
+  -->
+  <section class="team" aria-label="부회장 후보">
+    <div class="member" style="--i:0"><div class="avatar ph"><svg viewBox="0 0 24 24"><use href="#i-person"/></svg></div><p class="r">부회장 후보</p><p class="n ph">이름</p></div>
+    <div class="member" style="--i:1"><div class="avatar ph"><svg viewBox="0 0 24 24"><use href="#i-person"/></svg></div><p class="r">부회장 후보</p><p class="n ph">이름</p></div>
+    <div class="member" style="--i:2"><div class="avatar ph"><svg viewBox="0 0 24 24"><use href="#i-person"/></svg></div><p class="r">부회장 후보</p><p class="n ph">이름</p></div>
+    <div class="member" style="--i:3"><div class="avatar ph"><svg viewBox="0 0 24 24"><use href="#i-person"/></svg></div><p class="r">부회장 후보</p><p class="n ph">이름</p></div>
+    <div class="member" style="--i:4"><div class="avatar ph"><svg viewBox="0 0 24 24"><use href="#i-person"/></svg></div><p class="r">부회장 후보</p><p class="n ph">이름</p></div>
+  </section>
+
+  <section class="info">
+    <h2>배동윤 회장단의 <em>4대 약속</em></h2>
+
+    <div class="grid">
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-key"/></svg></span>
+          <div><span class="tag"><span class="no">01</span><span class="kw">전문성</span></span>
+          <h3>교섭의 마스터키</h3></div>
+        </div>
+        <p>교사·연구사·관리자·정책가의 경험으로<br><b>막힌 교섭 해결!</b></p>
+      </article>
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-siren"/></svg></span>
+          <div><span class="tag"><span class="no">02</span><span class="kw">신속성</span></span>
+          <h3>교권·현안 119</h3></div>
+        </div>
+        <p>교권 침해·3시 하교제·보결 문제,<br><b>골든타임 내 즉각 출동!</b></p>
+      </article>
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg></span>
+          <div><span class="tag"><span class="no">03</span><span class="kw">투명성</span></span>
+          <h3>클린 메신저</h3></div>
+        </div>
+        <p>회비 내역부터 공론화 안건까지 회원에게<br><b>투명하게 다이렉트 전달!</b></p>
+      </article>
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-steth"/></svg></span>
+          <div><span class="tag"><span class="no">04</span><span class="kw">맞춤형</span></span>
+          <h3>교육가족 주치의</h3></div>
+        </div>
+        <p>단체보험 확대부터 저경력 유입·고경력 우대까지<br><b>1:1 맞춤 케어!</b></p>
+      </article>
+    </div>
+
+    <div class="foot">
+      <span>부산교총 회장선거</span>
+      <span>회장 후보 <b>배동윤</b> · 부회장 후보 5인</span>
+    </div>
+  </section>
+</article>
+</div>
+</div>
+<script src="shared/flyer.js"></script>
+</body>
+</html>

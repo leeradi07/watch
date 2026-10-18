@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>배동윤 아이콘 포스터</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=block" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: "Pretendard Variable";
+    src: url("fonts/PretendardVariable.woff2") format("woff2-variations");
+    font-weight: 45 920;
+    font-display: block;
+  }
+  :root {
+    --ink: #0d0d0d;
+    --volt: #ffd60a;
+    --paper: #fffbea;
+    --display: "Black Han Sans", "Pretendard Variable", sans-serif;
+    --body: "Pretendard Variable", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --stage: #e5e5e5;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --stage: #111; } }
+  :root[data-theme="dark"] { --stage: #111; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--stage); }
+  body { min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; overflow-x: hidden; font-family: var(--body); -webkit-font-smoothing: antialiased; }
+  .fit { width: 794px; height: 1123px; transform-origin: top left; }
+  .fit-wrap { width: 794px; height: 1123px; }
+
+  .sheet {
+    position: relative; width: 794px; height: 1123px; overflow: hidden;
+    background: var(--volt); color: var(--ink);
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  .art { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .defs { position: absolute; width: 0; height: 0; } /* shared/flyer.js injects this */
+
+  /* ---------- top band ---------- */
+  .top { position: absolute; left: 44px; top: 40px; color: #fff; }
+  .kicker { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+  .kicker i { width: 28px; height: 3px; background: var(--volt); }
+  .role { margin-top: 26px; font-family: var(--display); font-size: 34px; color: var(--volt); letter-spacing: -0.01em; }
+  .name {
+    margin-top: -2px; margin-left: -6px;
+    font-family: var(--display); font-size: 158px; line-height: .92; color: var(--volt);
+    letter-spacing: -0.04em;
+  }
+
+  /* ---------- slogan ---------- */
+  .slogan {
+    position: absolute; left: 44px; top: 404px; width: 280px;
+    font-family: var(--display); font-size: 50px; line-height: 1.04; letter-spacing: -0.03em;
+  }
+  .slogan .hl { background: var(--ink); color: var(--volt); padding: 0 8px; margin-left: -8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .sub { margin-top: 18px; font-family: var(--body); font-size: 16px; line-height: 1.5; font-weight: 700; letter-spacing: -0.02em; }
+
+  /* ---------- pledges ---------- */
+  .pledges {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 352px;
+    background: var(--ink); color: #fff;
+    padding: 30px 44px 22px;
+  }
+  .pledges h2 { display: flex; align-items: baseline; gap: 12px; font-family: var(--display); font-size: 30px; font-weight: 400; color: #fff; }
+  .pledges h2 em { font-style: normal; color: var(--volt); }
+  .grid { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 34px; row-gap: 18px; }
+  .p { display: grid; grid-template-columns: 58px 1fr; column-gap: 12px; }
+  .p .no { font-family: var(--display); font-size: 46px; line-height: .9; color: var(--volt); }
+  .p .kw { display: inline-block; font-size: 12.5px; font-weight: 800; color: var(--ink); background: var(--volt); padding: 2px 7px; letter-spacing: .02em; }
+  .p h3 { margin-top: 5px; font-family: var(--display); font-weight: 400; font-size: 25px; line-height: 1.1; letter-spacing: -0.02em; }
+  .p p { margin-top: 6px; font-size: 13.5px; line-height: 1.45; font-weight: 500; color: rgba(255,255,255,.78); word-break: keep-all; }
+  .foot { position: absolute; left: 44px; right: 44px; bottom: 16px; display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700; color: var(--volt); letter-spacing: .04em; }
+
+  /* ---------- motion ---------- */
+  .anim .band      { animation: wipe 700ms cubic-bezier(.7,0,.2,1) both; }
+  .anim .portrait  { animation: rise 900ms cubic-bezier(.15,.9,.25,1) 200ms both; }
+  .anim .badge     { animation: spinin 1000ms cubic-bezier(.2,1.2,.4,1) 700ms both; transform-box: fill-box; transform-origin: center; }
+  .anim .badge-txt { animation: spin 24s linear infinite; transform-box: fill-box; transform-origin: center; }
+  .anim .name      { animation: slam 600ms cubic-bezier(.2,1.4,.4,1) 300ms both; transform-origin: left bottom; }
+  .anim .role, .anim .kicker { animation: fade 500ms ease 500ms both; }
+  .anim .slogan    { animation: fade 600ms ease 650ms both; }
+  .anim .pledges   { animation: up 700ms cubic-bezier(.15,.9,.25,1) 400ms both; }
+  @keyframes wipe { from { transform: translateX(-100%); } to { transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: none; } }
+  @keyframes slam { from { opacity: 0; transform: scale(1.6) rotate(-4deg); } to { opacity: 1; transform: none; } }
+  @keyframes spinin { from { opacity: 0; transform: scale(.2) rotate(-180deg); } to { opacity: 1; transform: none; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes fade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes up { from { transform: translateY(100%); } to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .anim * { animation: none !important; } }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: #fff; }
+    body { display: block; padding: 0; min-height: 0; }
+    .fit, .fit-wrap { width: auto; height: auto; transform: none !important; }
+    .anim * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="fit-wrap" id="fitWrap">
+<div class="fit" id="fit">
+<!-- 시안 D: 아이콘 포스터 (black × volt yellow, halftone portrait) -->
+<article class="sheet anim" id="sheet">
+
+  <svg class="art" viewBox="0 0 794 1123" aria-hidden="true">
+    <defs>
+      <!-- recolour the single-ink halftone -->
+      <filter id="toInk"><feFlood flood-color="#0d0d0d"/><feComposite in2="SourceAlpha" operator="in"/></filter>
+      <!-- solid yellow silhouette (+ border) so the head reads as a cut-out over the black band -->
+      <filter id="voltSil" x="-5%" y="-5%" width="110%" height="110%">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="9" result="d"/>
+        <feFlood flood-color="#ffd60a"/><feComposite in2="d" operator="in"/>
+      </filter>
+      <pattern id="hazard" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="22" height="22" fill="#ffd60a"/><rect width="11" height="22" fill="#0d0d0d"/>
+      </pattern>
+      <path id="ring" d="M 0 0 m -62 0 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0"/>
+    </defs>
+
+    <!-- black band, cut on a tilt -->
+    <g class="band"><polygon points="0,0 794,0 794,300 0,364" fill="#0d0d0d"/></g>
+
+    <!-- giant ghost numeral -->
+    <text x="804" y="760" text-anchor="end" font-family="Black Han Sans" font-size="520" fill="none"
+          stroke="#0d0d0d" stroke-opacity=".12" stroke-width="3">4</text>
+
+    <!-- hazard tape along the cut -->
+    <polygon points="0,364 794,300 794,314 0,378" fill="url(#hazard)"/>
+
+    <!-- portrait: the yellow silhouette masks the band and tape so the head pops out in front -->
+    <g class="portrait">
+      <image href="assets/candidate.webp" x="282" y="128" width="600" height="682" filter="url(#voltSil)"/>
+      <image href="assets/candidate-halftone.png" x="282" y="128" width="600" height="682" filter="url(#toInk)"/>
+    </g>
+
+
+    <!-- rotating badge -->
+    <g class="badge" transform="translate(668 676)">
+      <circle r="84" fill="#0d0d0d"/>
+      <circle r="78" fill="none" stroke="#ffd60a" stroke-width="1.5" stroke-dasharray="2 5"/>
+      <g class="badge-txt">
+        <text font-family="Pretendard Variable" font-weight="800" font-size="13.5" letter-spacing="3.2" fill="#ffd60a">
+          <textPath href="#ring">부산교총 회장선거 · 회장 후보 배동윤 · </textPath>
+        </text>
+      </g>
+      <text y="-6" text-anchor="middle" font-family="Black Han Sans" font-size="40" fill="#ffd60a">4대</text>
+      <text y="30" text-anchor="middle" font-family="Black Han Sans" font-size="30" fill="#fff">약속</text>
+    </g>
+  </svg>
+
+  <header class="top">
+    <p class="kicker"><i></i>부산교총 회장선거</p>
+    <p class="role">회장 후보</p>
+    <h1 class="name">배동윤</h1>
+  </header>
+
+  <p class="slogan">
+    막힌 교섭은<br><span class="hl">풀고,</span><br>현안엔<br><span class="hl">즉시 출동!</span>
+    <span class="sub" style="display:block">교사·연구사·관리자·정책가<br>현장을 다 겪어본 회장</span>
+  </p>
+
+  <section class="pledges">
+    <h2>배동윤의 <em>4대 약속</em></h2>
+    <div class="grid">
+      <div class="p"><span class="no">01</span><div><span class="kw">전문성</span><h3>교섭의 마스터키</h3><p>교사·연구사·관리자·정책가의 경험으로<br>막힌 교섭 해결!</p></div></div>
+      <div class="p"><span class="no">02</span><div><span class="kw">신속성</span><h3>교권·현안 119</h3><p>교권 침해·3시 하교제·보결 문제,<br>골든타임 내 즉각 출동!</p></div></div>
+      <div class="p"><span class="no">03</span><div><span class="kw">투명성</span><h3>클린 메신저</h3><p>회비 내역부터 공론화 안건까지 회원에게<br>투명하게 다이렉트 전달!</p></div></div>
+      <div class="p"><span class="no">04</span><div><span class="kw">맞춤형</span><h3>교육가족 주치의</h3><p>단체보험 확대부터 저경력 유입·고경력 우대까지<br>1:1 맞춤 케어!</p></div></div>
+    </div>
+    <div class="foot"><span>BUSAN · 부산교총 회장선거</span><span>회장 후보 배동윤</span></div>
+  </section>
+</article>
+</div>
+</div>
+<script src="shared/flyer.js"></script>
+</body>
+</html>
