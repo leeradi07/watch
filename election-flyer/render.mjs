@@ -11,13 +11,14 @@ const pages = [
   ["chalkboard.html", "chalkboard"], // C: 칠판 시간표
   ["icon.html", "icon"],       // D: 아이콘 포스터
   ["keynote.html", "keynote"], // E: 실리콘밸리 키노트
+  ["symbols.html", "symbols"], // F: Toss + 4대 약속 상징
   ["turnout.html", "turnout"], // 투표 참여 안내
 ];
 
 const browser = await chromium.launch();
 for (const [file, out] of pages) {
   const page = await browser.newPage({
-    viewport: { width: 900, height: 1200 },
+    viewport: { width: 900, height: 1187 }, // (1187 - 1123) / 2 = 32: keeps the sheet on whole pixels
     deviceScaleFactor: 3,
   });
   await page.goto(pathToFileURL(path.join(dir, file)).href + "?static");

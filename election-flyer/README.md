@@ -9,6 +9,7 @@ Toss DESIGN.md([rohitg00/awesome-claude-design · toss.md](https://github.com/ro
 | **C. 칠판 시간표** — 교실 칠판 위 분필 글씨, 4대 약속을 1~4교시 시간표로 | `chalkboard.html` | `chalkboard.png` / `chalkboard.pdf` |
 | **D. 아이콘 포스터** — 검정 × 볼트 옐로, 하프톤 인물, 경고 테이프, 회전 배지 | `icon.html` | `icon.png` / `icon.pdf` |
 | **E. 키노트** — 실리콘밸리 발표 무대: 오로라 조명, "Introducing", iOS 알림 카드, 벤토 그리드 | `keynote.html` | `keynote.png` / `keynote.pdf` |
+| **F. 4대 약속 상징 (Toss)** — 열쇠 톱니=4가지 경력, 골든타임 스톱워치, 투명 봉투, 하트 청진기 | `symbols.html` | `symbols.png` / `symbols.pdf` |
 | (참고) 비당파 투표 참여 안내 | `turnout.html` | `turnout.png` / `turnout.pdf` |
 
 - PNG는 3배 해상도(2382×3369, 약 288dpi), PDF는 A4 인쇄용입니다.
