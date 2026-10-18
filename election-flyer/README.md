@@ -10,6 +10,7 @@ Toss DESIGN.md([rohitg00/awesome-claude-design · toss.md](https://github.com/ro
 | **D. 아이콘 포스터** — 검정 × 볼트 옐로, 하프톤 인물, 경고 테이프, 회전 배지 | `icon.html` | `icon.png` / `icon.pdf` |
 | **E. 키노트** — 실리콘밸리 발표 무대: 오로라 조명, "Introducing", iOS 알림 카드, 벤토 그리드 | `keynote.html` | `keynote.png` / `keynote.pdf` |
 | **F. 4대 약속 상징 (Toss)** — 열쇠 톱니=4가지 경력, 골든타임 스톱워치, 투명 봉투, 하트 청진기 | `symbols.html` | `symbols.png` / `symbols.pdf` |
+| **약속별 세부 1~4** — 01 블루 전문성 · 02 레드 신속성 · 03 그린 투명성 · 04 오렌지 맞춤형 | `pledge-1.html` … `pledge-4.html` | `pledge-N.png` / `pledge-N.pdf`, 4쪽 묶음 `pledges.pdf`, 한눈에 `pledges.jpg` |
 | (참고) 비당파 투표 참여 안내 | `turnout.html` | `turnout.png` / `turnout.pdf` |
 
 - PNG는 3배 해상도(2382×3369, 약 288dpi), PDF는 A4 인쇄용입니다.
@@ -21,6 +22,15 @@ Toss DESIGN.md([rohitg00/awesome-claude-design · toss.md](https://github.com/ro
 - C·D·E안은 Google Fonts(Black Han Sans, Gaegu, JetBrains Mono, OFL)를 온라인으로 불러옵니다. 렌더할 때 인터넷 연결이 필요합니다.
 - `assets/candidate-halftone.png` — D안용 단색 하프톤 인물(망점 45°, 외곽선 포함). SVG 필터로 색을 입힙니다.
 - `concepts.jpg` — C·D·E안 나란히 비교 이미지
+
+## 약속별 세부 플라이어
+
+네 장이 같은 틀(상단 색 영역 → 큰 번호 → 상징 그림 → "이렇게 지킵니다" 목록 → 약속 문장 띠 → 후보·시리즈 범례)을 쓰고, 색과 그림만 바뀝니다.
+
+- 색: `shared/pledge.css`의 `[data-pledge="N"]` (`--main`, `--deep`, `--mid`, `--soft`)
+- 문구: `shared/pledge.js`의 `PLEDGES` — 목록의 보조 문구(예: "교실의 목소리를 압니다")는 초안이니 캠프 확인 후 고쳐 쓰세요.
+- 그림: `shared/pledge-art.js` (F안 `symbols.html`의 그림에서 색만 변수로 바꿔 추출)
+- 4쪽 묶음 PDF는 `pdfunite pledge-1.pdf pledge-2.pdf pledge-3.pdf pledge-4.pdf pledges.pdf`로 다시 만듭니다.
 
 ## 초등학교 배경
 

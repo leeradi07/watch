@@ -12,6 +12,10 @@ const pages = [
   ["icon.html", "icon"],       // D: 아이콘 포스터
   ["keynote.html", "keynote"], // E: 실리콘밸리 키노트
   ["symbols.html", "symbols"], // F: Toss + 4대 약속 상징
+  ["pledge-1.html", "pledge-1"], // 약속 01 세부
+  ["pledge-2.html", "pledge-2"], // 약속 02 세부
+  ["pledge-3.html", "pledge-3"], // 약속 03 세부
+  ["pledge-4.html", "pledge-4"], // 약속 04 세부
   ["turnout.html", "turnout"], // 투표 참여 안내
 ];
 
