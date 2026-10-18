@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>투표 참여 플라이어</title>
+<title>배동윤 4대 약속</title>
 <style>
   @font-face {
     font-family: "Pretendard Variable";
@@ -16,7 +16,6 @@
   :root {
     --bg: #ffffff;
     --surface: #f2f4f6;
-    --surface-2: #e8f3ff;
     --text: #191f28;
     --text-secondary: #333d4b;
     --text-muted: #6b7684;
@@ -67,7 +66,7 @@
   .art { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   /* ---------- Hero copy ---------- */
-  .hero-copy { position: absolute; left: 56px; top: 56px; right: 56px; color: #fff; }
+  .hero-copy { position: absolute; left: 56px; top: 56px; width: 330px; color: #fff; }
 
   .chip {
     display: inline-flex;
@@ -83,153 +82,146 @@
   }
   .chip i { width: 7px; height: 7px; border-radius: 50%; background: #fff; }
 
-  h1 {
-    margin-top: 22px;
-    font-size: 100px;
-    line-height: 1.02;
+  .role {
+    margin-top: 34px;
+    font-size: 24px;
     font-weight: 800;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.03em;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  h1 {
+    margin-top: 2px;
+    font-size: 116px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    margin-left: -6px;
   }
 
   .lede {
     margin-top: 22px;
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: 21px;
+    line-height: 1.45;
     font-weight: 500;
-    letter-spacing: -0.01em;
-    color: rgba(255, 255, 255, 0.86);
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.88);
   }
+  .lede b { font-weight: 800; color: #fff; }
 
-  /* ---------- Info ---------- */
-  .info { position: absolute; left: 56px; right: 56px; bottom: 36px; }
+  /* ---------- Pledges ---------- */
+  .info { position: absolute; left: 56px; right: 56px; bottom: 30px; }
 
   .info h2 {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 800;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
     color: var(--text);
   }
+  .info h2 em { font-style: normal; color: var(--accent); }
 
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-  .card {
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .pledge {
     border-radius: 16px;
-    padding: 20px 22px 18px;
+    padding: 18px 20px 18px;
     background: var(--surface);
   }
-  .card.main { background: var(--accent); color: #fff; }
-  .card .label {
+  .pledge .top { display: flex; align-items: center; gap: 14px; }
+  .ico {
+    width: 48px; height: 48px; flex: none;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .ico svg { width: 30px; height: 30px; }
+  .tag { display: flex; align-items: baseline; gap: 8px; line-height: 1.2; }
+  .tag .no {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .tag .kw {
     font-size: 15px;
     font-weight: 500;
     color: var(--text-muted);
   }
-  .card.main .label { color: rgba(255, 255, 255, 0.8); }
-  .big {
-    margin-top: 6px;
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    font-variant-numeric: tabular-nums;
-  }
-  .big b {
-    font-size: 54px;
-    line-height: 1;
+  .pledge h3 {
+    margin-top: 1px;
+    font-size: 23px;
+    line-height: 1.25;
     font-weight: 800;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.035em;
+    color: var(--text);
   }
-  .big .sep { font-size: 36px; font-weight: 500; opacity: 0.45; margin: 0 2px; }
-  .big span { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
-  .card .note {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-secondary);
-  }
-  .card.main .note { color: rgba(255, 255, 255, 0.86); }
-
-  .rows { margin-top: 14px; list-style: none; }
-  .rows li {
-    display: grid;
-    grid-template-columns: 96px 1fr;
-    align-items: center;
-    height: 44px;
-    border-bottom: 1px solid var(--border);
-    font-size: 16px;
-    letter-spacing: -0.01em;
-  }
-  .rows li:first-child { border-top: 1px solid var(--border); }
-  .rows dt, .rows .k { color: var(--text-muted); font-weight: 500; }
-  .rows .v { color: var(--text); font-weight: 800; font-variant-numeric: tabular-nums; }
-  .rows .v small { font-size: 14px; font-weight: 500; color: var(--text-muted); margin-left: 6px; }
-
-  .cta {
-    margin-top: 18px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    height: 56px;
-    padding: 0 24px;
-    border-radius: 7px;
-    background: var(--accent);
-    color: #f9fafb;
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-  .btn.ghost { background: var(--accent-soft); color: var(--accent-hover); }
-  .btn svg { width: 18px; height: 18px; }
-  .cta .grow { flex: 1; }
-
-  .fine {
-    margin-top: 14px;
-    font-size: 11.5px;
+  .pledge p {
+    margin-top: 12px;
+    font-size: 14.5px;
     line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--text-secondary);
+    word-break: keep-all;
+  }
+  .pledge p b { font-weight: 800; color: var(--accent-hover); }
+
+  .foot {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
     font-weight: 500;
     color: var(--text-dim);
   }
+  .foot b { font-weight: 800; color: var(--text); }
 
-  /* ---------- Motion: the stamp slams, everything reacts ---------- */
-  .anim .stamp-in   { animation: slam 620ms cubic-bezier(.2, 1.4, .4, 1) 120ms both; }
-  .anim .rays       { animation: burst 900ms cubic-bezier(.1, .9, .2, 1) 300ms both; }
+  /* ---------- Motion ---------- */
+  .anim .person     { animation: person 800ms cubic-bezier(.15, .9, .25, 1) both; }
+  .anim .rays       { animation: burst 1000ms cubic-bezier(.1, .9, .2, 1) 150ms both; }
   .anim .ring       { animation: ring 1100ms cubic-bezier(.1, .8, .3, 1) both; }
-  .anim .ring.r1    { animation-delay: 320ms; }
-  .anim .ring.r2    { animation-delay: 420ms; }
-  .anim .ring.r3    { animation-delay: 520ms; }
+  .anim .ring.r1    { animation-delay: 220ms; }
+  .anim .ring.r2    { animation-delay: 320ms; }
+  .anim .ring.r3    { animation-delay: 420ms; }
   .anim .fly        { animation: fly 900ms cubic-bezier(.15, .9, .25, 1) both; }
-  .anim .fly.f1     { animation-delay: 340ms; }
-  .anim .fly.f2     { animation-delay: 400ms; }
-  .anim .fly.f3     { animation-delay: 460ms; }
-  .anim .splat      { animation: pop 500ms cubic-bezier(.2, 1.6, .4, 1) 360ms both; }
-  .anim .ghostnum   { animation: slide 1200ms cubic-bezier(.1, .9, .2, 1) both; }
+  .anim .fly.f1     { animation-delay: 380ms; }
+  .anim .fly.f2     { animation-delay: 440ms; }
+  .anim .fly.f3     { animation-delay: 500ms; }
+  .anim .fly.f4     { animation-delay: 560ms; }
+  .anim .stamp-in   { animation: slam 560ms cubic-bezier(.2, 1.4, .4, 1) 640ms both; }
+  .anim .splat      { animation: pop 500ms cubic-bezier(.2, 1.6, .4, 1) 820ms both; }
   .anim .speed      { animation: slide 900ms cubic-bezier(.1, .9, .2, 1) 200ms both; }
   .anim .hero-copy > * { animation: rise 640ms cubic-bezier(.2, .9, .3, 1) both; }
   .anim .hero-copy > :nth-child(2) { animation-delay: 80ms; }
-  .anim .hero-copy > :nth-child(3) { animation-delay: 160ms; }
-  .anim .info       { animation: rise 640ms cubic-bezier(.2, .9, .3, 1) 520ms both; }
+  .anim .hero-copy > :nth-child(3) { animation-delay: 140ms; }
+  .anim .hero-copy > :nth-child(4) { animation-delay: 200ms; }
+  .anim .pledge     { animation: rise 600ms cubic-bezier(.2, .9, .3, 1) both; }
+  .anim .pledge:nth-child(1) { animation-delay: 700ms; }
+  .anim .pledge:nth-child(2) { animation-delay: 760ms; }
+  .anim .pledge:nth-child(3) { animation-delay: 820ms; }
+  .anim .pledge:nth-child(4) { animation-delay: 880ms; }
+  .anim .info h2, .anim .foot { animation: rise 600ms cubic-bezier(.2, .9, .3, 1) 640ms both; }
 
-  .stamp-in, .rays, .ring, .splat {
-    transform-box: view-box;
-    transform-origin: 612px 438px;
+  .rays, .ring, .fly, .person { transform-box: view-box; transform-origin: 562px 250px; }
+  .stamp-in, .splat { transform-box: view-box; transform-origin: 126px 604px; }
+
+  @keyframes person {
+    0%   { opacity: 0; transform: translateY(60px) scale(.96); }
+    100% { opacity: 1; transform: none; }
   }
-  .fly { transform-box: view-box; transform-origin: 612px 438px; }
-
   @keyframes slam {
-    0%   { opacity: 0; transform: scale(2.4) rotate(18deg); }
+    0%   { opacity: 0; transform: scale(2.6) rotate(20deg); }
     60%  { opacity: 1; }
-    100% { opacity: 1; transform: scale(1) rotate(0); }
+    100% { opacity: 1; transform: none; }
   }
   @keyframes burst {
     0%   { opacity: 0; transform: scale(0.2) rotate(-8deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0); }
+    100% { opacity: 1; transform: none; }
   }
   @keyframes ring {
     0%   { opacity: 0; transform: scale(0.4); }
     30%  { opacity: 1; }
-    100% { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: none; }
   }
   @keyframes fly {
     0%   { opacity: 0; transform: translate(var(--fx), var(--fy)) scale(0.3) rotate(var(--fr)); }
@@ -237,7 +229,7 @@
   }
   @keyframes pop {
     0%   { opacity: 0; transform: scale(0.2); }
-    100% { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: none; }
   }
   @keyframes slide {
     0%   { opacity: 0; transform: translateX(-120px); }
@@ -268,18 +260,25 @@
 
   <svg class="art" viewBox="0 0 794 1123" aria-hidden="true">
     <defs>
-      <!-- Hero plane: flat Toss Blue, sheared bottom edge -->
-      <clipPath id="hero"><polygon points="0,0 794,0 794,516 0,652"/></clipPath>
-      <clipPath id="below"><polygon points="0,652 794,516 794,1123 0,1123"/></clipPath>
+      <clipPath id="hero"><polygon points="0,0 794,0 794,560 0,672"/></clipPath>
+      <clipPath id="below"><polygon points="0,672 794,560 794,1123 0,1123"/></clipPath>
 
       <!-- Rubber-stamp ink: wobbly edge + dry-brush speckle -->
       <filter id="ink" x="-20%" y="-20%" width="140%" height="140%">
         <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="warp"/>
-        <feDisplacementMap in="SourceGraphic" in2="warp" scale="9" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
+        <feDisplacementMap in="SourceGraphic" in2="warp" scale="8" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
         <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="11" result="grain"/>
         <feColorMatrix in="grain" type="matrix"
           values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -5 0 0 0 4.1" result="mask"/>
         <feComposite in="wobble" in2="mask" operator="in"/>
+      </filter>
+
+      <!-- Flat offset silhouette behind the candidate -->
+      <filter id="echo" x="-10%" y="-10%" width="130%" height="120%">
+        <feFlood flood-color="#1e40af" flood-opacity=".55"/>
+        <feComposite in2="SourceAlpha" operator="in"/>
+        <feOffset dx="-22" dy="8" result="sil"/>
+        <feMerge><feMergeNode in="sil"/><feMergeNode in="SourceGraphic"/></feMerge>
       </filter>
 
       <!-- 기표 도장 (circle + 卜) -->
@@ -289,144 +288,182 @@
         <path d="M -8 -18 L 62 22" stroke="currentColor" stroke-width="32" stroke-linecap="round" fill="none"/>
       </g>
 
-      <!-- Ballot paper -->
-      <g id="ballot">
-        <rect x="-100" y="-130" width="200" height="260" rx="8" fill="#fff"/>
-        <rect x="-76" y="-108" width="88" height="10" rx="5" fill="#d1d6db"/>
-        <g fill="none" stroke="#e5e8eb" stroke-width="2">
-          <rect x="-76" y="-80" width="152" height="44" rx="4"/>
-          <rect x="-76" y="-28" width="152" height="44" rx="4"/>
-          <rect x="-76" y="24" width="152" height="44" rx="4"/>
-          <rect x="-76" y="76" width="152" height="44" rx="4"/>
-        </g>
-        <g fill="#e5e8eb">
-          <rect x="-66" y="-64" width="56" height="12" rx="6"/>
-          <rect x="-66" y="-12" width="70" height="12" rx="6"/>
-          <rect x="-66" y="40" width="48" height="12" rx="6"/>
-          <rect x="-66" y="92" width="62" height="12" rx="6"/>
-        </g>
-        <use href="#mark" transform="translate(48 -6) scale(0.11) rotate(-12)" style="color: var(--accent)"/>
+      <!-- Pledge icons (24-unit grid, two-step blue) -->
+      <g id="i-key">
+        <circle cx="8" cy="12" r="5.5" fill="#3182f6"/>
+        <circle cx="8" cy="12" r="2.2" fill="#e8f3ff"/>
+        <path d="M12.5 10.6h9.5v2.8h-2v2.6h-2.6v-2.6h-1.4v1.8h-2.4v-1.8h-1.1z" fill="#3182f6"/>
       </g>
+      <g id="i-siren">
+        <path d="M5.5 17V12a6.5 6.5 0 0 1 13 0v5z" fill="#3182f6"/>
+        <path d="M9 12.2a3 3 0 0 1 3-3" stroke="#e8f3ff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <rect x="3.5" y="17" width="17" height="3.6" rx="1.2" fill="#1b64da"/>
+        <g stroke="#90c2ff" stroke-width="1.8" stroke-linecap="round">
+          <path d="M12 1.6v2.2M3.4 5.2l1.6 1.5M20.6 5.2 19 6.7M1.4 12h1.8M20.8 12h1.8"/>
+        </g>
+      </g>
+      <g id="i-mail">
+        <rect x="2" y="5" width="20" height="14.5" rx="2.6" fill="#3182f6"/>
+        <path d="M3.4 7.2 12 13.2l8.6-6" stroke="#e8f3ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </g>
+      <g id="i-steth">
+        <path d="M5 2.8v5.4a4.5 4.5 0 0 0 9 0V2.8" stroke="#3182f6" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path d="M9.5 12.7v2.8a4.8 4.8 0 0 0 9.6 0v-2" stroke="#3182f6" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <circle cx="19.1" cy="10.6" r="2.9" fill="#1b64da"/>
+        <circle cx="19.1" cy="10.6" r="1.1" fill="#e8f3ff"/>
+      </g>
+
+      <!-- Flying icon tile -->
+      <symbol id="tile" viewBox="0 0 80 80" overflow="visible">
+        <rect width="80" height="80" rx="20" fill="#fff"/>
+      </symbol>
     </defs>
 
     <!-- ===== Hero plane ===== -->
     <g clip-path="url(#hero)">
       <rect width="794" height="700" fill="#3182f6"/>
 
-      <!-- impact burst (generated) -->
+      <!-- impact burst behind the candidate (generated) -->
       <g class="rays" id="rays"></g>
-
-      <!-- giant ghost date, cropped -->
-      <text class="ghostnum" x="-18" y="618" font-family="Pretendard Variable, sans-serif"
-            font-size="300" font-weight="800" letter-spacing="-12"
-            fill="none" stroke="#fff" stroke-opacity="0.24" stroke-width="2.5">4.12</text>
 
       <!-- speed lines -->
       <g class="speed" stroke="#fff" stroke-linecap="round">
-        <line x1="-20" y1="452" x2="300" y2="400" stroke-width="3" stroke-opacity=".28"/>
-        <line x1="40"  y1="486" x2="236" y2="454" stroke-width="2" stroke-opacity=".2"/>
-        <line x1="-20" y1="540" x2="180" y2="507" stroke-width="5" stroke-opacity=".16"/>
-        <line x1="250" y1="590" x2="420" y2="562" stroke-width="2" stroke-opacity=".22"/>
+        <line x1="-20" y1="470" x2="250" y2="420" stroke-width="3" stroke-opacity=".26"/>
+        <line x1="30"  y1="506" x2="210" y2="473" stroke-width="2" stroke-opacity=".2"/>
+        <line x1="-20" y1="420" x2="120" y2="394" stroke-width="5" stroke-opacity=".14"/>
       </g>
 
       <!-- shockwave rings -->
       <g fill="none" stroke="#fff">
-        <circle class="ring r1" cx="612" cy="438" r="200" stroke-width="3" stroke-opacity=".32"/>
-        <circle class="ring r2" cx="612" cy="438" r="262" stroke-width="2" stroke-opacity=".2"/>
-        <circle class="ring r3" cx="612" cy="438" r="336" stroke-width="1.5" stroke-opacity=".12"/>
+        <circle class="ring r1" cx="562" cy="250" r="190" stroke-width="3" stroke-opacity=".3"/>
+        <circle class="ring r2" cx="562" cy="250" r="262" stroke-width="2" stroke-opacity=".18"/>
+        <circle class="ring r3" cx="562" cy="250" r="350" stroke-width="1.5" stroke-opacity=".1"/>
       </g>
 
-      <!-- flying ballots with motion streaks -->
-      <g class="fly f1" style="--fx:-70px; --fy:240px; --fr:-30deg">
-        <g stroke="#fff" stroke-linecap="round">
-          <line x1="640" y1="252" x2="604" y2="338" stroke-width="6" stroke-opacity=".35"/>
-          <line x1="690" y1="262" x2="664" y2="324" stroke-width="3" stroke-opacity=".3"/>
-          <line x1="738" y1="268" x2="720" y2="312" stroke-width="2" stroke-opacity=".25"/>
-        </g>
-        <use href="#ballot" transform="translate(708 118) rotate(19) scale(.82)"/>
-      </g>
-      <g class="fly f2" style="--fx:420px; --fy:-40px; --fr:30deg">
-        <g stroke="#fff" stroke-linecap="round">
-          <line x1="196" y1="512" x2="300" y2="500" stroke-width="5" stroke-opacity=".32"/>
-          <line x1="190" y1="546" x2="268" y2="537" stroke-width="2.5" stroke-opacity=".26"/>
-        </g>
-        <use href="#ballot" transform="translate(130 520) rotate(-26) scale(.42)"/>
-      </g>
-      <g class="fly f3" style="--fx:-120px; --fy:-120px; --fr:-40deg">
-        <use href="#ballot" transform="translate(512 214) rotate(-8) scale(.24)" opacity=".92"/>
+      <!-- the candidate -->
+      <g class="person">
+        <image href="assets/candidate.webp" x="296" y="70" width="500" height="569" filter="url(#echo)"/>
       </g>
 
-      <!-- the stamp, white on blue -->
+      <!-- pledge icons flung out by the impact -->
+      <g class="fly f1" style="--fx:-160px; --fy:140px; --fr:-30deg">
+        <g stroke="#fff" stroke-linecap="round">
+          <line x1="672" y1="150" x2="636" y2="178" stroke-width="5" stroke-opacity=".4"/>
+          <line x1="690" y1="174" x2="664" y2="194" stroke-width="2.5" stroke-opacity=".3"/>
+        </g>
+        <g transform="translate(722 116) rotate(14)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-key" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+      <g class="fly f2" style="--fx:300px; --fy:-200px; --fr:30deg">
+        <g stroke="#fff" stroke-linecap="round">
+          <line x1="312" y1="462" x2="350" y2="434" stroke-width="5" stroke-opacity=".38"/>
+          <line x1="322" y1="486" x2="348" y2="466" stroke-width="2.5" stroke-opacity=".28"/>
+        </g>
+        <g transform="translate(272 494) rotate(-16)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-siren" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+      <g class="fly f3" style="--fx:-180px; --fy:-150px; --fr:-24deg">
+        <g stroke="#fff" stroke-linecap="round">
+          <line x1="718" y1="372" x2="682" y2="344" stroke-width="4" stroke-opacity=".36"/>
+        </g>
+        <g transform="translate(746 404) rotate(-11) scale(.8)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-mail" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+      <g class="fly f4" style="--fx:140px; --fy:160px; --fr:24deg">
+        <g transform="translate(410 96) rotate(-9) scale(.6)">
+          <use href="#tile" x="-40" y="-40" width="80" height="80"/>
+          <use href="#i-steth" transform="translate(-24 -24) scale(2)"/>
+        </g>
+      </g>
+
+      <!-- vote stamp, white on blue -->
       <g class="stamp-in" style="color:#fff">
-        <use href="#mark" transform="translate(612 438) rotate(-14) scale(1.18)" filter="url(#ink)"/>
+        <use href="#mark" transform="translate(126 604) rotate(-14) scale(.5)" filter="url(#ink)"/>
       </g>
-      <!-- ink spatter -->
       <g class="splat" fill="#fff">
-        <circle cx="402" cy="352" r="9"/><circle cx="388" cy="378" r="4"/><circle cx="420" cy="320" r="3"/>
-        <circle cx="782" cy="300" r="7"/><circle cx="770" cy="270" r="3.5"/>
-        <circle cx="452" cy="268" r="5"/>
+        <circle cx="44" cy="540" r="5"/><circle cx="56" cy="522" r="2.5"/><circle cx="214" cy="596" r="4"/>
       </g>
     </g>
 
-    <!-- ===== Same stamp, inverted to Toss Blue, breaking through the edge ===== -->
+    <!-- crisp cut line: keeps the edge legible where the white shirt meets the white page -->
+    <line x1="-10" y1="673.7" x2="804" y2="558.3" stroke="#3182f6" stroke-width="6"/>
+
+    <!-- ===== Stamp inverted to Toss Blue where it breaks through the edge ===== -->
     <g clip-path="url(#below)">
       <g class="stamp-in" style="color:#3182f6">
-        <use href="#mark" transform="translate(612 438) rotate(-14) scale(1.18)" filter="url(#ink)"/>
+        <use href="#mark" transform="translate(126 604) rotate(-14) scale(.5)" filter="url(#ink)"/>
       </g>
       <g class="splat" fill="#3182f6">
-        <circle cx="748" cy="612" r="8"/><circle cx="772" cy="586" r="3.5"/>
-        <circle cx="560" cy="626" r="5"/><circle cx="530" cy="606" r="2.5"/>
+        <circle cx="222" cy="664" r="4"/><circle cx="40" cy="690" r="3"/>
       </g>
     </g>
   </svg>
 
   <header class="hero-copy">
-    <span class="chip"><i></i>2028년 4월 12일 수요일 · 제23대 국회의원선거</span>
-    <h1>내 한 표가<br>판을 바꿔요</h1>
-    <p class="lede">사전투표부터 선거일까지,<br>필요한 것만 담았어요.</p>
+    <span class="chip"><i></i>부산교총 회장선거</span>
+    <p class="role">회장 후보</p>
+    <h1>배동윤</h1>
+    <p class="lede">막힌 교섭은 <b>풀고</b>,<br>현안엔 <b>즉시 출동</b>합니다.</p>
   </header>
 
   <section class="info">
-    <h2>투표, 이렇게 하면 돼요</h2>
+    <h2>배동윤의 <em>4대 약속</em></h2>
 
-    <div class="cards">
-      <div class="card">
-        <div class="label">사전투표</div>
-        <div class="big"><b>4.7</b><span class="sep">–</span><b>4.8</b><span>금·토</span></div>
-        <div class="note">전국 어느 사전투표소에서나</div>
-      </div>
-      <div class="card main">
-        <div class="label">선거일</div>
-        <div class="big"><b>4.12</b><span>수요일</span></div>
-        <div class="note">주소지 지정 투표소에서</div>
-      </div>
+    <div class="grid">
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-key"/></svg></span>
+          <div><span class="tag"><span class="no">01</span><span class="kw">전문성</span></span>
+          <h3>교섭의 마스터키</h3></div>
+        </div>
+        <p>교사·연구사·관리자·정책가의 경험으로<br><b>막힌 교섭 해결!</b></p>
+      </article>
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-siren"/></svg></span>
+          <div><span class="tag"><span class="no">02</span><span class="kw">신속성</span></span>
+          <h3>교권·현안 119</h3></div>
+        </div>
+        <p>교권 침해·3시 하교제·보결 문제,<br><b>골든타임 내 즉각 출동!</b></p>
+      </article>
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg></span>
+          <div><span class="tag"><span class="no">03</span><span class="kw">투명성</span></span>
+          <h3>클린 메신저</h3></div>
+        </div>
+        <p>회비 내역부터 공론화 안건까지 회원에게<br><b>투명하게 다이렉트 전달!</b></p>
+      </article>
+      <article class="pledge">
+        <div class="top">
+          <span class="ico"><svg viewBox="0 0 24 24"><use href="#i-steth"/></svg></span>
+          <div><span class="tag"><span class="no">04</span><span class="kw">맞춤형</span></span>
+          <h3>교육가족 주치의</h3></div>
+        </div>
+        <p>단체보험 확대부터 저경력 유입·고경력 우대까지<br><b>1:1 맞춤 케어!</b></p>
+      </article>
     </div>
 
-    <ul class="rows">
-      <li><span class="k">투표 시간</span><span class="v">오전 6시 – 오후 6시</span></li>
-      <li><span class="k">준비물</span><span class="v">신분증 하나<small>주민등록증 · 운전면허증 · 여권</small></span></li>
-      <li><span class="k">내 투표소</span><span class="v">nec.go.kr<small>중앙선거관리위원회 · 국번 없이 1390</small></span></li>
-    </ul>
-
-    <div class="cta">
-      <span class="btn">
-        내 투표소 확인하기
-        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h11M10 4.5 14.5 9 10 13.5"/></svg>
-      </span>
-      <span class="btn ghost">사전투표소 찾기</span>
+    <div class="foot">
+      <span>부산교총 회장선거</span>
+      <span>회장 후보 <b>배동윤</b></span>
     </div>
-
-    <p class="fine">이 안내는 특정 정당·후보자와 무관한 투표 참여 캠페인입니다. 정확한 일정과 장소는 중앙선거관리위원회 공고를 확인해 주세요.</p>
   </section>
 </article>
 </div>
 </div>
 
 <script>
-  // Impact burst: alternating flat wedges radiating from the stamp.
+  // Impact burst: alternating flat wedges radiating from behind the candidate.
   (function () {
     const g = document.getElementById("rays");
-    const cx = 612, cy = 438, R = 1200, n = 22;
+    const cx = 562, cy = 250, R = 1200, n = 22;
     const ns = "http://www.w3.org/2000/svg";
     for (let i = 0; i < n; i++) {
       const a = (i / n) * Math.PI * 2 + 0.11;
