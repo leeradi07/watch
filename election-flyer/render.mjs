@@ -6,7 +6,8 @@ import path from "node:path";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const pages = [
-  ["index.html", "flyer"],     // 배동윤 후보 4대 약속
+  ["index.html", "flyer"],     // 배동윤 회장 단독
+  ["team.html", "team"],       // 회장단 6인
   ["turnout.html", "turnout"], // 투표 참여 안내
 ];
 

@@ -4,345 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>배동윤 4대 약속</title>
-<style>
-  @font-face {
-    font-family: "Pretendard Variable";
-    src: url("fonts/PretendardVariable.woff2") format("woff2-variations");
-    font-weight: 45 920;
-    font-display: block;
-  }
-
-  /* Toss DESIGN.md tokens */
-  :root {
-    --bg: #ffffff;
-    --surface: #f2f4f6;
-    --text: #191f28;
-    --text-secondary: #333d4b;
-    --text-muted: #6b7684;
-    --text-dim: #8b95a1;
-    --border: #e5e8eb;
-    --accent: #3182f6;
-    --accent-hover: #1b64da;
-    --accent-deep: #1e40af;
-    --accent-soft: #e8f3ff;
-    --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
-            "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
-    --stage: #e5e8eb;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --stage: #101318; }
-  }
-  :root[data-theme="dark"] { --stage: #101318; }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body { background: var(--stage); }
-  body {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 32px 16px;
-    font-family: var(--font);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  /* A4 artboard at 96dpi; scaled to fit by script */
-  .fit { width: 794px; height: 1123px; transform-origin: top left; }
-  .fit-wrap { width: 794px; height: 1123px; }
-
-  .sheet {
-    position: relative;
-    width: 794px;
-    height: 1123px;
-    overflow: hidden;
-    background: var(--bg);
-    color: var(--text);
-    box-shadow: 0 8px 24px rgba(25, 31, 40, 0.08);
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .art { position: absolute; inset: 0; width: 100%; height: 100%; }
-
-  /* ---------- Hero copy ---------- */
-  .hero-copy { position: absolute; left: 56px; top: 56px; width: 330px; color: #fff; }
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    height: 34px;
-    padding: 0 14px;
-    border-radius: 7px;
-    background: var(--accent-deep);
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-  .chip i { width: 7px; height: 7px; border-radius: 50%; background: #fff; }
-
-  .role {
-    margin-top: 34px;
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  h1 {
-    margin-top: 2px;
-    font-size: 116px;
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    margin-left: -6px;
-  }
-
-  .lede {
-    margin-top: 22px;
-    font-size: 21px;
-    line-height: 1.45;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.88);
-  }
-  .lede b { font-weight: 800; color: #fff; }
-
-  /* ---------- Pledges ---------- */
-  .info { position: absolute; left: 56px; right: 56px; bottom: 30px; }
-
-  .info h2 {
-    font-size: 30px;
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    color: var(--text);
-  }
-  .info h2 em { font-style: normal; color: var(--accent); }
-
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
-  .pledge {
-    border-radius: 16px;
-    padding: 18px 20px 18px;
-    background: var(--surface);
-  }
-  .pledge .top { display: flex; align-items: center; gap: 14px; }
-  .ico {
-    width: 48px; height: 48px; flex: none;
-    display: grid; place-items: center;
-    border-radius: 12px;
-    background: #fff;
-  }
-  .ico svg { width: 30px; height: 30px; }
-  .tag { display: flex; align-items: baseline; gap: 8px; line-height: 1.2; }
-  .tag .no {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-  }
-  .tag .kw {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-muted);
-  }
-  .pledge h3 {
-    margin-top: 1px;
-    font-size: 23px;
-    line-height: 1.25;
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    color: var(--text);
-  }
-  .pledge p {
-    margin-top: 12px;
-    font-size: 14.5px;
-    line-height: 1.5;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    color: var(--text-secondary);
-    word-break: keep-all;
-  }
-  .pledge p b { font-weight: 800; color: var(--accent-hover); }
-
-  .foot {
-    margin-top: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-dim);
-  }
-  .foot b { font-weight: 800; color: var(--text); }
-
-  /* ---------- Motion ---------- */
-  .anim .person     { animation: person 800ms cubic-bezier(.15, .9, .25, 1) both; }
-  .anim .rays       { animation: burst 1000ms cubic-bezier(.1, .9, .2, 1) 150ms both; }
-  .anim .ring       { animation: ring 1100ms cubic-bezier(.1, .8, .3, 1) both; }
-  .anim .ring.r1    { animation-delay: 220ms; }
-  .anim .ring.r2    { animation-delay: 320ms; }
-  .anim .ring.r3    { animation-delay: 420ms; }
-  .anim .fly        { animation: fly 900ms cubic-bezier(.15, .9, .25, 1) both; }
-  .anim .fly.f1     { animation-delay: 380ms; }
-  .anim .fly.f2     { animation-delay: 440ms; }
-  .anim .fly.f3     { animation-delay: 500ms; }
-  .anim .fly.f4     { animation-delay: 560ms; }
-  .anim .stamp-in   { animation: slam 560ms cubic-bezier(.2, 1.4, .4, 1) 640ms both; }
-  .anim .splat      { animation: pop 500ms cubic-bezier(.2, 1.6, .4, 1) 820ms both; }
-  .anim .speed      { animation: slide 900ms cubic-bezier(.1, .9, .2, 1) 200ms both; }
-  .anim .hero-copy > * { animation: rise 640ms cubic-bezier(.2, .9, .3, 1) both; }
-  .anim .hero-copy > :nth-child(2) { animation-delay: 80ms; }
-  .anim .hero-copy > :nth-child(3) { animation-delay: 140ms; }
-  .anim .hero-copy > :nth-child(4) { animation-delay: 200ms; }
-  .anim .pledge     { animation: rise 600ms cubic-bezier(.2, .9, .3, 1) both; }
-  .anim .pledge:nth-child(1) { animation-delay: 700ms; }
-  .anim .pledge:nth-child(2) { animation-delay: 760ms; }
-  .anim .pledge:nth-child(3) { animation-delay: 820ms; }
-  .anim .pledge:nth-child(4) { animation-delay: 880ms; }
-  .anim .info h2, .anim .foot { animation: rise 600ms cubic-bezier(.2, .9, .3, 1) 640ms both; }
-
-  .rays, .ring, .fly, .person { transform-box: view-box; transform-origin: 562px 250px; }
-  .stamp-in, .splat { transform-box: view-box; transform-origin: 126px 604px; }
-
-  @keyframes person {
-    0%   { opacity: 0; transform: translateY(60px) scale(.96); }
-    100% { opacity: 1; transform: none; }
-  }
-  @keyframes slam {
-    0%   { opacity: 0; transform: scale(2.6) rotate(20deg); }
-    60%  { opacity: 1; }
-    100% { opacity: 1; transform: none; }
-  }
-  @keyframes burst {
-    0%   { opacity: 0; transform: scale(0.2) rotate(-8deg); }
-    100% { opacity: 1; transform: none; }
-  }
-  @keyframes ring {
-    0%   { opacity: 0; transform: scale(0.4); }
-    30%  { opacity: 1; }
-    100% { opacity: 1; transform: none; }
-  }
-  @keyframes fly {
-    0%   { opacity: 0; transform: translate(var(--fx), var(--fy)) scale(0.3) rotate(var(--fr)); }
-    100% { opacity: 1; transform: none; }
-  }
-  @keyframes pop {
-    0%   { opacity: 0; transform: scale(0.2); }
-    100% { opacity: 1; transform: none; }
-  }
-  @keyframes slide {
-    0%   { opacity: 0; transform: translateX(-120px); }
-    100% { opacity: 1; transform: none; }
-  }
-  @keyframes rise {
-    0%   { opacity: 0; transform: translateY(24px); }
-    100% { opacity: 1; transform: none; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .anim * { animation: none !important; }
-  }
-
-  @page { size: A4; margin: 0; }
-  @media print {
-    html, body { background: #fff; }
-    body { display: block; padding: 0; min-height: 0; }
-    .fit, .fit-wrap { width: auto; height: auto; transform: none !important; }
-    .sheet { box-shadow: none; }
-    .anim * { animation: none !important; }
-  }
-</style>
+<link rel="stylesheet" href="shared/flyer.css">
 </head>
 <body>
 <div class="fit-wrap" id="fitWrap">
 <div class="fit" id="fit">
-<article class="sheet anim" id="sheet">
+<!-- 시안 A: 회장 후보 단독 -->
+<article class="sheet anim" id="sheet" style="--burst: 562px 250px">
 
   <svg class="art" viewBox="0 0 794 1123" aria-hidden="true">
     <defs>
-      <clipPath id="hero"><polygon points="0,0 794,0 794,560 0,672"/></clipPath>
-      <clipPath id="below"><polygon points="0,672 794,560 794,1123 0,1123"/></clipPath>
-
-      <!-- Rubber-stamp ink: wobbly edge + dry-brush speckle -->
-      <filter id="ink" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="warp"/>
-        <feDisplacementMap in="SourceGraphic" in2="warp" scale="8" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
-        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="11" result="grain"/>
-        <feColorMatrix in="grain" type="matrix"
-          values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -5 0 0 0 4.1" result="mask"/>
-        <feComposite in="wobble" in2="mask" operator="in"/>
-      </filter>
-
-      <!-- Flat offset silhouette behind the candidate -->
-      <filter id="echo" x="-10%" y="-10%" width="130%" height="120%">
-        <feFlood flood-color="#1e40af" flood-opacity=".55"/>
-        <feComposite in2="SourceAlpha" operator="in"/>
-        <feOffset dx="-22" dy="8" result="sil"/>
-        <feMerge><feMergeNode in="sil"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-
-      <!-- 기표 도장 (circle + 卜) -->
-      <g id="mark">
-        <circle r="136" fill="none" stroke="currentColor" stroke-width="30"/>
-        <path d="M -20 -86 L -20 88" stroke="currentColor" stroke-width="32" stroke-linecap="round" fill="none"/>
-        <path d="M -8 -18 L 62 22" stroke="currentColor" stroke-width="32" stroke-linecap="round" fill="none"/>
-      </g>
-
-      <!-- Pledge icons (24-unit grid, two-step blue) -->
-      <g id="i-key">
-        <circle cx="8" cy="12" r="5.5" fill="#3182f6"/>
-        <circle cx="8" cy="12" r="2.2" fill="#e8f3ff"/>
-        <path d="M12.5 10.6h9.5v2.8h-2v2.6h-2.6v-2.6h-1.4v1.8h-2.4v-1.8h-1.1z" fill="#3182f6"/>
-      </g>
-      <g id="i-siren">
-        <path d="M5.5 17V12a6.5 6.5 0 0 1 13 0v5z" fill="#3182f6"/>
-        <path d="M9 12.2a3 3 0 0 1 3-3" stroke="#e8f3ff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-        <rect x="3.5" y="17" width="17" height="3.6" rx="1.2" fill="#1b64da"/>
-        <g stroke="#90c2ff" stroke-width="1.8" stroke-linecap="round">
-          <path d="M12 1.6v2.2M3.4 5.2l1.6 1.5M20.6 5.2 19 6.7M1.4 12h1.8M20.8 12h1.8"/>
-        </g>
-      </g>
-      <g id="i-mail">
-        <rect x="2" y="5" width="20" height="14.5" rx="2.6" fill="#3182f6"/>
-        <path d="M3.4 7.2 12 13.2l8.6-6" stroke="#e8f3ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </g>
-      <g id="i-steth">
-        <path d="M5 2.8v5.4a4.5 4.5 0 0 0 9 0V2.8" stroke="#3182f6" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <path d="M9.5 12.7v2.8a4.8 4.8 0 0 0 9.6 0v-2" stroke="#3182f6" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <circle cx="19.1" cy="10.6" r="2.9" fill="#1b64da"/>
-        <circle cx="19.1" cy="10.6" r="1.1" fill="#e8f3ff"/>
-      </g>
-
-      <!-- Flying icon tile -->
-      <symbol id="tile" viewBox="0 0 80 80" overflow="visible">
-        <rect width="80" height="80" rx="20" fill="#fff"/>
-      </symbol>
+      <clipPath id="hero"><polygon points="0,0 794,0 794,584 0,696"/></clipPath>
     </defs>
 
-    <!-- ===== Hero plane ===== -->
     <g clip-path="url(#hero)">
       <rect width="794" height="700" fill="#3182f6"/>
+      <g class="rays" data-burst="562,250"></g>
 
-      <!-- impact burst behind the candidate (generated) -->
-      <g class="rays" id="rays"></g>
-
-      <!-- speed lines -->
-      <g class="speed" stroke="#fff" stroke-linecap="round">
-        <line x1="-20" y1="470" x2="250" y2="420" stroke-width="3" stroke-opacity=".26"/>
-        <line x1="30"  y1="506" x2="210" y2="473" stroke-width="2" stroke-opacity=".2"/>
-        <line x1="-20" y1="420" x2="120" y2="394" stroke-width="5" stroke-opacity=".14"/>
-      </g>
-
-      <!-- shockwave rings -->
       <g fill="none" stroke="#fff">
         <circle class="ring r1" cx="562" cy="250" r="190" stroke-width="3" stroke-opacity=".3"/>
         <circle class="ring r2" cx="562" cy="250" r="262" stroke-width="2" stroke-opacity=".18"/>
         <circle class="ring r3" cx="562" cy="250" r="350" stroke-width="1.5" stroke-opacity=".1"/>
       </g>
 
-      <!-- the candidate -->
+      <g class="cloud"><use href="#cloud" transform="translate(22 416) scale(.8)" opacity=".95"/></g>
+      <g class="cloud"><use href="#cloud" transform="translate(704 236) scale(.7)" opacity=".9"/></g>
+
+      <!-- elementary school, tilted to follow the hero edge -->
+      <g class="scene"><use href="#school" transform="translate(-260 384) skewY(-8)"/></g>
+
       <g class="person">
-        <image href="assets/candidate.webp" x="296" y="70" width="500" height="569" filter="url(#echo)"/>
+        <image href="assets/candidate.webp" x="284" y="72" width="520" height="592" filter="url(#echo)"/>
       </g>
 
       <!-- pledge icons flung out by the impact -->
@@ -358,10 +50,10 @@
       </g>
       <g class="fly f2" style="--fx:300px; --fy:-200px; --fr:30deg">
         <g stroke="#fff" stroke-linecap="round">
-          <line x1="312" y1="462" x2="350" y2="434" stroke-width="5" stroke-opacity=".38"/>
-          <line x1="322" y1="486" x2="348" y2="466" stroke-width="2.5" stroke-opacity=".28"/>
+          <line x1="322" y1="452" x2="358" y2="426" stroke-width="5" stroke-opacity=".4"/>
+          <line x1="334" y1="476" x2="358" y2="458" stroke-width="2.5" stroke-opacity=".3"/>
         </g>
-        <g transform="translate(272 494) rotate(-16)">
+        <g transform="translate(286 484) rotate(-16)">
           <use href="#tile" x="-40" y="-40" width="80" height="80"/>
           <use href="#i-siren" transform="translate(-24 -24) scale(2)"/>
         </g>
@@ -381,28 +73,10 @@
           <use href="#i-steth" transform="translate(-24 -24) scale(2)"/>
         </g>
       </g>
-
-      <!-- vote stamp, white on blue -->
-      <g class="stamp-in" style="color:#fff">
-        <use href="#mark" transform="translate(126 604) rotate(-14) scale(.5)" filter="url(#ink)"/>
-      </g>
-      <g class="splat" fill="#fff">
-        <circle cx="44" cy="540" r="5"/><circle cx="56" cy="522" r="2.5"/><circle cx="214" cy="596" r="4"/>
-      </g>
     </g>
 
-    <!-- crisp cut line: keeps the edge legible where the white shirt meets the white page -->
-    <line x1="-10" y1="673.7" x2="804" y2="558.3" stroke="#3182f6" stroke-width="6"/>
-
-    <!-- ===== Stamp inverted to Toss Blue where it breaks through the edge ===== -->
-    <g clip-path="url(#below)">
-      <g class="stamp-in" style="color:#3182f6">
-        <use href="#mark" transform="translate(126 604) rotate(-14) scale(.5)" filter="url(#ink)"/>
-      </g>
-      <g class="splat" fill="#3182f6">
-        <circle cx="222" cy="664" r="4"/><circle cx="40" cy="690" r="3"/>
-      </g>
-    </g>
+    <!-- crisp cut line where the white shirt meets the white page -->
+    <line x1="-10" y1="697.4" x2="804" y2="582.6" stroke="#3182f6" stroke-width="6"/>
   </svg>
 
   <header class="hero-copy">
@@ -458,43 +132,6 @@
 </article>
 </div>
 </div>
-
-<script>
-  // Impact burst: alternating flat wedges radiating from behind the candidate.
-  (function () {
-    const g = document.getElementById("rays");
-    const cx = 562, cy = 250, R = 1200, n = 22;
-    const ns = "http://www.w3.org/2000/svg";
-    for (let i = 0; i < n; i++) {
-      const a = (i / n) * Math.PI * 2 + 0.11;
-      const w = (i % 3 === 0 ? 0.075 : 0.035);
-      const p = document.createElementNS(ns, "polygon");
-      const x1 = cx + R * Math.cos(a - w), y1 = cy + R * Math.sin(a - w);
-      const x2 = cx + R * Math.cos(a + w), y2 = cy + R * Math.sin(a + w);
-      p.setAttribute("points", `${cx},${cy} ${x1.toFixed(1)},${y1.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`);
-      p.setAttribute("fill", i % 2 ? "#1b64da" : "#5a9cf8");
-      p.setAttribute("opacity", i % 2 ? "0.55" : "0.35");
-      g.appendChild(p);
-    }
-  })();
-
-  // Fit the A4 artboard to the viewport.
-  (function () {
-    const fit = document.getElementById("fit");
-    const wrap = document.getElementById("fitWrap");
-    function resize() {
-      const s = Math.min(1, (window.innerWidth - 32) / 794);
-      fit.style.transform = `scale(${s})`;
-      wrap.style.width = 794 * s + "px";
-      wrap.style.height = 1123 * s + "px";
-    }
-    if (!matchMedia("print").matches) { resize(); addEventListener("resize", resize); }
-  })();
-
-  // ?static disables motion (used by the PNG/PDF renderer).
-  if (new URLSearchParams(location.search).has("static")) {
-    document.getElementById("sheet").classList.remove("anim");
-  }
-</script>
+<script src="shared/flyer.js"></script>
 </body>
 </html>
